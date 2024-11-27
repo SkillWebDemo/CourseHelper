@@ -8,3 +8,10 @@
 * An optional feature is delivery of a downloadable generated .pdf out from the page.
 
 
+# server.js
+To run server.js
+1. Go to project directory in terminal
+2. run command: `npm install express`
+3. run command: `npm install node`
+4. run command: `node server.js`
+5. go to http://localhost:3000/
