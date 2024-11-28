@@ -10,42 +10,52 @@ const setupPromt = `You will recieve a text from a pdf document about a course,
                     you should read this information and come up with a suggestions 
                     for a weekly schedule.`;
 
+// Function to send a question to OpenAI
 async function sendQuestionToOpenAI(questionFromUser) {
+  //type checking
+  if (!questionFromUser || typeof questionFromUser !== "string") {
+    throw new Error(
+      "Invalid input: 'questionFromUser' must be a non-empty string."
+    );
+  }
+
   try {
     const completion = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: [
-        { role: "system", content: setupPromt },
+        { role: "system", content: setupPrompt },
         { role: "user", content: questionFromUser },
       ],
     });
 
-    return completion.choices[0].message.content; // Return the generated response
+    return completion.choices[0].message.content.trim();
   } catch (error) {
-    console.error("Error generating chat response:", error);
-    throw error;
+    console.error("Error generating chat response:", error.message);
+    throw new Error("Failed to communicate with OpenAI API.");
   }
 }
 
-async function testAPIConnection() {
-  const testSystemPromt =
-    "This is just a connection test, you should reply with only success if it's working";
-  const testQuestion = "Do you work?";
-
+/**
+ * A function to test the OpenAI API.
+ *
+ * This function will terminate the program if the OpenAI API fails.
+ *
+ * How to use:
+ * - Ensure you have set up your OpenAI API key in a `.env` file.
+ * - The function sends a predefined prompt to the OpenAI API and logs the response.
+ *
+ * If the API fails, the program will terminate with an error message.
+ */
+async function testOpenAiAPI() {
   try {
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4o",
-      messages: [
-        { role: "system", content: testPromt },
-        { role: "user", content: testQuestion },
-      ],
-    });
-    return completion.choices[0].message.content; // Return the generated response
+    const prompt = "Write a haiku about recursion in programming.";
+    const response = await generateChatResponse(prompt);
+    console.log("API Response:", response);
   } catch (error) {
-    console.error("Error generating chat response:", error);
-    throw error;
+    console.error("Critical Error:", error.message);
+    process.exit(1); 
   }
 }
 
 module.exports = { sendQuestionToOpenAI };
-module.exports = { testAPIConnection };
+module.exports = { testOpenAiAPI };
