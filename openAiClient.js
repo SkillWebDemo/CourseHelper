@@ -6,9 +6,7 @@ const openai = new OpenAI({
 });
 
 // TODO read input from PDF instead
-const setupPromt = `You will recieve a text from a pdf document about a course, 
-                    you should read this information and come up with a suggestions 
-                    for a weekly schedule.`;
+const setupPromt = `THIS IS A PLACEHOLDER FOR THE PDF WHICH SHOULD BE THE SETUP SYSTEM PROMPT`;
 
 // Function to send a question to OpenAI
 async function sendQuestionToOpenAI(questionFromUser) {
@@ -34,6 +32,7 @@ async function sendQuestionToOpenAI(questionFromUser) {
     throw new Error("Failed to communicate with OpenAI API.");
   }
 }
+
 /**
  * A function to test the OpenAI API.
  *
