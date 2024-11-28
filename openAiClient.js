@@ -48,7 +48,7 @@ async function sendQuestionToOpenAI(questionFromUser) {
  */
 async function testOpenAiAPI() {
   try {
-    const prompt = "Write a haiku about recursion in programming.";
+    const prompt = "Hello this is a test";
     const response = await generateChatResponse(prompt);
     console.log("API Response:", response);
   } catch (error) {
