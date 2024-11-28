@@ -23,7 +23,7 @@ async function sendQuestionToOpenAI(questionFromUser) {
     const completion = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: [
-        { role: "system", content: setupPrompt },
+        { role: "system", content: setupPromt },
         { role: "user", content: questionFromUser },
       ],
     });
@@ -34,7 +34,6 @@ async function sendQuestionToOpenAI(questionFromUser) {
     throw new Error("Failed to communicate with OpenAI API.");
   }
 }
-
 /**
  * A function to test the OpenAI API.
  *
@@ -49,11 +48,11 @@ async function sendQuestionToOpenAI(questionFromUser) {
 async function testOpenAiAPI() {
   try {
     const prompt = "Hello this is a test";
-    const response = await generateChatResponse(prompt);
+    const response = await sendQuestionToOpenAI(prompt);
     console.log("API Response:", response);
   } catch (error) {
     console.error("Critical Error:", error.message);
-    process.exit(1); 
+    process.exit(1);
   }
 }
 
