@@ -7,6 +7,7 @@ const listenPost = 3000;
 
 app.use(express.static(path.join(__dirname, "public")));
 
+
 //Listen to port 3000
 app.listen(listenPost, () => {
   console.log(`Server is running on port ${listenPost}`);

@@ -14,3 +14,11 @@ To run server.js
 2. run command: `npm install`
 3. run command: `node server.js`
 4. go to http://localhost:3000/
+
+
+# openAiClient.js
+setup:
+1. Create an .env file in the project root folder
+2. Put this line in it and replace with your actual key: 
+    OPENAI_API_KEY=your-api-key-here
+
