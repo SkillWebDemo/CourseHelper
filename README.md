@@ -6,6 +6,9 @@
 * The first front end for users should be a web page, with a form accepting a text or a file with the course contents.
 * The return should be presented nicely in the webpage and preferably be easy to copy.
 * An optional feature is delivery of a downloadable generated .pdf out from the page.
+* Update from Zoom 28/11-24
+    * Kursplan = Webbutveckling... eller AI...
+    * Kursinstruktion = Flipped
 
 
 # server.js
