@@ -56,5 +56,4 @@ async function testOpenAiAPI() {
   }
 }
 
-module.exports = { sendQuestionToOpenAI };
-module.exports = { testOpenAiAPI };
+module.exports = { sendQuestionToOpenAI, testOpenAiAPI };
