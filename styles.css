@@ -42,10 +42,10 @@ header {
     top: 0;
     width: 100%;
     background: linear-gradient(180deg, #6ec4e4, #a1d0e1);
-    color: white;
+    color: var(--color-white);
     text-align: center;
     padding: 0.5rem 0;
-    font-family: 'Arial', sans-serif;
+    font-family: var(--font-miltonian-tattoo);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 header h1 {
@@ -58,6 +58,10 @@ header img {
 }
     section {
         flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
     }
     
     .footer_1 {
@@ -74,26 +78,13 @@ header img {
       .all-rights-reserved {
         font-size: 1.25em;
         font-family: var(--font-maven-pro);
-        color: #fff;
+        color: var(--color-white);
         text-align: center; 
       }
-      
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
- 
-  section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
+
   
   form {
-    background-color: #fff;
+    background-color: var(--color-white);
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -105,15 +96,15 @@ body {
   }
   
   button {
-    background-color:#6EC4E4;
-    color: #fff;
+    background-color:var(--color-blue);
+    color: var(--color-white);
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
   }
   button:hover {
-    background-color:#6EC4E4
+    background-color:var(--color-blue);
   }
   
   #Course-plan, #Course-content {
