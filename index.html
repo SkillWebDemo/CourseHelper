@@ -11,27 +11,25 @@
         <img src="/img/chas-academy-logo.png" alt="logo">
         <h1>Course Helper</h1>
     </header>
-    <section>
- <br> <br>
-        <form id="Course- plan">
-            <h1>Course- plan</h1>
-             <button id="Add/edit">Add/edit</button>
-             <button id="Delete">Delete</button>
-             <button id="Download as PDF">Dowenload as PDF</button>
-             <button id="Copy to Clipboard">Copy to Clipboard</button>
-           
-          </form>
-         <form id="Course- content">
-            <h1>Course- content</h1>
-            <textarea id="instructions" name="instructions" rows="10" cols="50"></textarea>
-             <button id="Upload file">Upload file</button>
-             <button id="Add/edit">Add/edit</button>
-             <button id="Delete">Delete</button>
-            
-           
-          </form>
-
-
+    <section id="course-container">
+        <div id="Course-plan">
+            <h2>Course Plan</h2>
+            <div class="button-container">
+              <button id="AddEdit">Add/Edit</button>
+              <button id="Delete">Delete</button>
+              <button id="DownloadPDF">Download as PDF</button>
+             <button id="CopyClipboard">Copy to Clipboard</button>
+            </div>
+        </div>
+        <div id="Course-content">
+            <h2>Course Content</h2>
+            <textarea id="instructions" name="instructions" rows="10" cols="50" placeholder="Enter content here..."></textarea>
+            <div class="button-container">
+              <button id="UploadFile">Upload file</button>
+              <button id="AddEditContent">Add/Edit</button>
+              <button id="DeleteContent">Delete</button>
+            </div>
+        </div>
     </section>
     <footer class="footer_1">
         <div class="all-rights-reserved">© 2024. All rights reserved.</div>  
