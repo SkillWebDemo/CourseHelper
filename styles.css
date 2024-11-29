@@ -42,6 +42,23 @@ header img {
     }
 
     
+    
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%; 
+        display: flex;
+        flex-direction: column; 
+    }
+    
+    body {
+        line-height: normal;
+    }
+
+    section {
+        flex: 1;
+    }
+    
     .footer_1 {
         position: fixed;
         bottom: 0;
