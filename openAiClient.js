@@ -5,8 +5,9 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY, // Load API key from .env
 });
 
-// TODO read input from PDF instead
-const setupPromt = `THIS IS A PLACEHOLDER FOR THE PDF WHICH SHOULD BE THE SETUP SYSTEM PROMPT`;
+//Load data from the PDF into this variable
+const PDFcontent = "";
+const setupPromt = require("./data/aiSystemAgentStartingPromt") + PDFcontent;
 
 // Function to send a question to OpenAI
 async function sendQuestionToOpenAI(questionFromUser) {
