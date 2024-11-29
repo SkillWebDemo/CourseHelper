@@ -21,7 +21,8 @@ header h1 {
 header img {
     height: 8vw;
     object-fit: cover;
-}:root {
+}
+:root {
     /* fonts */
     --font-metrophobic: Metrophobic;
     --font-miltonian-tattoo: 'Miltonian Tattoo';
@@ -111,9 +112,10 @@ body {
     border-radius: 5px;
     cursor: pointer;
   }
-  button:hover {
-    background-color:#6EC4E4
-  }
+
+button:hover {
+    background-color: #5aaac8;
+}
   
   #Course-plan, #Course-content {
     margin-bottom: 20px;
