@@ -24,12 +24,10 @@ async function sendQuestionToOpenAI(questionFromUser) {
   }
 
   try {
-    const setUpPrompt = await setUpAgent()
-    console.log(setUpPrompt);
     const completion = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: [
-        { role: "system", content: setUpPrompt },
+        { role: "system", content: await setUpAgent() },
         { role: "user", content: questionFromUser },
       ],
     });
@@ -40,10 +38,6 @@ async function sendQuestionToOpenAI(questionFromUser) {
     throw new Error("Failed to communicate with OpenAI API.");
   }
 }
-
-sendQuestionToOpenAI("Create a crouse for Introduction to Psychology?").then(response => {
-  console.log(response);
-} );
 
 /**
  * A function to test the OpenAI API.
