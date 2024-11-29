@@ -1,17 +1,22 @@
 const OpenAI = require("openai");
+const pdf = require("pdf-parse");
+const systemPrompt = require("./data/aiSystemAgentStartingPromt");
 require("dotenv").config();
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY, // Load API key from .env
 });
 
-//Load data from the PDF into this variable
-const PDFcontent = "";
-const setupPromt = require("./data/aiSystemAgentStartingPromt") + PDFcontent;
+async function setUpAgent() {
+  // Load the PDF content and append it to the system prompt
+  const data = await pdf('./data/flipped.pdf');
+  const PDFcontent = data.text;
+  return systemPrompt + PDFcontent;
+}
 
 // Function to send a question to OpenAI
 async function sendQuestionToOpenAI(questionFromUser) {
-  //type checking
+  // Type checking
   if (!questionFromUser || typeof questionFromUser !== "string") {
     throw new Error(
       "Invalid input: 'questionFromUser' must be a non-empty string."
@@ -19,10 +24,12 @@ async function sendQuestionToOpenAI(questionFromUser) {
   }
 
   try {
+    const setUpPrompt = await setUpAgent()
+    console.log(setUpPrompt);
     const completion = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: [
-        { role: "system", content: setupPromt },
+        { role: "system", content: setUpPrompt },
         { role: "user", content: questionFromUser },
       ],
     });
@@ -33,6 +40,10 @@ async function sendQuestionToOpenAI(questionFromUser) {
     throw new Error("Failed to communicate with OpenAI API.");
   }
 }
+
+sendQuestionToOpenAI("Create a crouse for Introduction to Psychology?").then(response => {
+  console.log(response);
+} );
 
 /**
  * A function to test the OpenAI API.
