@@ -59,10 +59,16 @@ router.post('/upload', (req, res) => {
             if (req.file == undefined) {
                 res.status(400).json({ message: 'No file selected!' });
             } else {
+                // Save the file to the uploads directory
                 const filename = path.join(uploadsDirectory, `${req.file.filename}`);
+
+                // Read the PDF content
                 const data = await pdf(filename);
+
+                // Ask OpenAI a question based on the PDF content
                 const response = await sendQuestionToOpenAI(data.text);
 
+                // Save the response as a PDF file
                 const pdfPath = path.join(downloadsDirectory, `response-${Date.now()}.pdf`);
                 const pdfResponse = await mdToPdf({ content: response }).catch(console.error);
 
@@ -76,7 +82,7 @@ router.post('/upload', (req, res) => {
                         response: response
                     });
                 } else {
-                    res.status(500);
+                    res.status(500).json({ message: 'Failed to generate PDF response!' });
                 }
             }
         }
