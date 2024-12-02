@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CourseHelper</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <img src="/img/chas-academy-logo.png" alt="logo">
+        <h1>Course Helper</h1>
+    </header>
+    <section id="course-container">
+        <div id="Course-plan">
+            <h2>Course plan</h2>
+            <textarea readonly disabled id="plans" name="plans" rows="10" cols="50"></textarea>
+            <div class="button-container">
+              <button id="AddEdit">Add/Edit</button>
+              <button id="Delete">Delete</button>
+              <button id="DownloadPDF">Download as PDF</button>
+             <button id="CopyClipboard">Copy to Clipboard</button>
+            </div>
+        </div>
+        <div id="Course-content">
+            <h2>Course content</h2>
+            <textarea id="instructions" name="instructions" rows="10" cols="50" placeholder="Enter content here..."></textarea>
+            <div class="button-container">
+              <button id="UploadFile">Upload file</button>
+              <button id="DeleteContent">Delete</button>
+            </div>
+        </div>
+    </section>
+    <footer class="footer_1">
+        <div class="all-rights-reserved">© 2024. All rights reserved.</div>  
+    </footer>
+</body>
+</html>
