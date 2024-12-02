@@ -59,13 +59,9 @@ router.post('/upload', (req, res) => {
             if (req.file == undefined) {
                 res.status(400).json({ message: 'No file selected!' });
             } else {
-                // Save the file to the uploads directory
+                // Ask OpenAI based on the uploaded PDF content
                 const filename = path.join(uploadsDirectory, `${req.file.filename}`);
-
-                // Read the PDF content
                 const data = await pdf(filename);
-
-                // Ask OpenAI a question based on the PDF content
                 const response = await sendQuestionToOpenAI(data.text);
 
                 // Save the response as a PDF file
