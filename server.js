@@ -1,7 +1,6 @@
 //Basic server setup
 
 const express = require("express");
-const { get } = require("http");
 const path = require("path");
 const app = express();
 const listenPost = 3000;
@@ -15,5 +14,4 @@ app.listen(listenPost, () => {
 });
 
 //Routes
-app.use("/test", require("./routes/test"));
 app.use("/API", require("./routes/API"));
