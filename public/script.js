@@ -5,7 +5,7 @@ document.getElementById("pdfUpload").addEventListener("submit", function(event) 
         body: new FormData(document.getElementById("pdfUpload")),
     }).then(response => response.json())
     .then(data => {
-        document.getElementById("response").innerHTML = data.response;
+        window.location.href = data.file;
     }).catch(error => {
         console.error("Error:", error);
     });

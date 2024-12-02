@@ -1,6 +1,8 @@
 const OpenAI = require("openai");
 const pdf = require("pdf-parse");
 const systemPrompt = require("./data/aiSystemAgentStartingPromt");
+const fs = require('fs');
+
 require("dotenv").config();
 
 const openai = new OpenAI({

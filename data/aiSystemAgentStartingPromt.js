@@ -33,8 +33,7 @@ For example:
 Based on this input, generate a complete course structure.
 
 ### Output Requirements:
-- Produce a **detailed and clear course outline** in HTML format, suitable for web display. Do not include the doctype, html, head, or body tags.
-- Provide an option for the user to download the outline as a **.pdf**.
+- Produce a **detailed and clear course outline** as a pdf-file.
 
 ### Additional Features:
 - Suggest relevant tools or technologies that align with the Flipped Classroom approach (e.g., collaboration platforms, video tools).

@@ -4,11 +4,18 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const { sendQuestionToOpenAI } = require('../openAiClient');
+const { mdToPdf } = require('md-to-pdf');
 
 // Create uploads folder if it doesn't exist
 const uploadsDirectory = './data/uploads/';
+const downloadsDirectory = './public/downloads/';
+
 if (!fs.existsSync(uploadsDirectory)) {
     fs.mkdirSync(uploadsDirectory);
+}
+
+if (!fs.existsSync(downloadsDirectory)) {
+    fs.mkdirSync(downloadsDirectory);
 }
 
 const router = express.Router();
@@ -55,11 +62,22 @@ router.post('/upload', (req, res) => {
                 const filename = path.join(uploadsDirectory, `${req.file.filename}`);
                 const data = await pdf(filename);
                 const response = await sendQuestionToOpenAI(data.text);
-                res.status(200).json({
-                    message: 'File uploaded successfully!',
-                    file: req.file.filename,
-                    response: response
-                });
+
+                const pdfPath = path.join(downloadsDirectory, `response-${Date.now()}.pdf`);
+                const pdfResponse = await mdToPdf({ content: response }).catch(console.error);
+
+                if (pdfResponse) {
+                    fs.writeFileSync(pdfPath, pdfResponse.content);
+                    const downloadPath = pdfPath.replace('public', '');
+                    console.log(downloadPath);
+                    res.status(200).json({
+                        message: 'File uploaded successfully!',
+                        file: downloadPath,
+                        response: response
+                    });
+                } else {
+                    res.status(500);
+                }
             }
         }
     });
