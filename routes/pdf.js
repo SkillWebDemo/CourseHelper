@@ -1,7 +1,9 @@
+const pdf = require("pdf-parse");
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const { sendQuestionToOpenAI } = require('../openAiClient');
 
 // Create uploads folder if it doesn't exist
 const uploadsDirectory = './data/uploads/';
@@ -33,7 +35,6 @@ function checkFileType(file, cb) {
     const filetypes = /pdf/;
     const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
     const mimetype = filetypes.test(file.mimetype);
-    console.log(mimetype);
 
     if (mimetype && extname) {
         return cb(null, true);
@@ -44,16 +45,20 @@ function checkFileType(file, cb) {
 
 // Route to handle PDF upload
 router.post('/upload', (req, res) => {
-    upload(req, res, (err) => {
+    upload(req, res, async (err) => {
         if (err) {
             res.status(400).json({ message: err });
         } else {
             if (req.file == undefined) {
                 res.status(400).json({ message: 'No file selected!' });
             } else {
+                const filename = path.join(uploadsDirectory, `${req.file.filename}`);
+                const data = await pdf(filename);
+                const response = await sendQuestionToOpenAI(data.text);
                 res.status(200).json({
                     message: 'File uploaded successfully!',
-                    file: path.join(uploadsDirectory, `${req.file.filename}`)
+                    file: req.file.filename,
+                    response: response
                 });
             }
         }

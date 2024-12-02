@@ -25,7 +25,7 @@ async function sendQuestionToOpenAI(questionFromUser) {
 
   try {
     const completion = await openai.chat.completions.create({
-      model: "gpt-4o",
+      model: "gpt-4o-mini",
       messages: [
         { role: "system", content: await setUpAgent() },
         { role: "user", content: questionFromUser },
