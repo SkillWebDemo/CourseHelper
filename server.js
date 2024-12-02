@@ -14,4 +14,5 @@ app.listen(listenPost, () => {
 });
 
 //Routes
-app.use("/API", require("./routes/API"));
+app.use("/api", require("./routes/api"));
+app.use("/api/pdf", require("./routes/pdf"));

@@ -23,12 +23,16 @@
             </div>
         </div>
         <div id="Course-content">
-            <h2>Course content</h2>
-            <textarea id="instructions" name="instructions" rows="10" cols="50" placeholder="Enter content here..."></textarea>
-            <div class="button-container">
-              <button id="UploadFile">Upload file</button>
-              <button id="DeleteContent">Delete</button>
-            </div>
+            <form action="/api/pdf/upload" method="post" enctype="multipart/form-data">
+                <h2>Course content</h2>
+                <textarea id="instructions" name="instructions" rows="10" cols="50" placeholder="Enter content here..."></textarea>
+                <label for="file">File</label>
+                <input type="file" id="pdfFile" name="pdfFile" accept="application/pdf">
+                <div class="button-container">
+                    <button type="submit" id="UploadFile">Upload PDF</button>
+                    <button id="DeleteContent">Delete</button>
+                </div>
+            </form>
         </div>
     </section>
     <footer class="footer_1">
