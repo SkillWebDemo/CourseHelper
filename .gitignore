@@ -133,3 +133,4 @@ dist
 
 # don't track uploads
 data/uploads/*
+public/downloads/*

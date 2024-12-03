@@ -1,6 +1,8 @@
 const OpenAI = require("openai");
 const pdf = require("pdf-parse");
 const systemPrompt = require("./data/aiSystemAgentStartingPromt");
+const fs = require('fs');
+
 require("dotenv").config();
 
 const openai = new OpenAI({
@@ -25,7 +27,7 @@ async function sendQuestionToOpenAI(questionFromUser) {
 
   try {
     const completion = await openai.chat.completions.create({
-      model: "gpt-4o",
+      model: "gpt-4o-mini",
       messages: [
         { role: "system", content: await setUpAgent() },
         { role: "user", content: questionFromUser },
